@@ -37,6 +37,41 @@ const TypingIndicator = () => (
   </div>
 );
 
+const formatMessageText = (text) => {
+  if (!text) return null;
+  // Simple markdown renderer for headers and bold text
+  const lines = text.split('\n');
+  return lines.map((line, idx) => {
+    let content = line;
+    const isHeading = line.startsWith('### ') || line.startsWith('## ');
+    if (isHeading) {
+      content = line.replace(/^#+\s*/, '');
+      return (
+        <h4 key={idx} className="font-bold text-white text-base mt-2 mb-1">
+          {content}
+        </h4>
+      );
+    }
+
+    // Replace **bold** with <strong>
+    const parts = line.split(/(\*\*.*?\*\*)/g);
+    return (
+      <p key={idx} className={`${line.trim() === '' ? 'h-2' : 'min-h-[1rem]'}`}>
+        {parts.map((part, i) => {
+          if (part.startsWith('**') && part.endsWith('**')) {
+            return (
+              <strong key={i} className="font-bold text-white">
+                {part.slice(2, -2)}
+              </strong>
+            );
+          }
+          return part;
+        })}
+      </p>
+    );
+  });
+};
+
 const ChatMessage = ({ message }) => {
   const isUser = message.role === 'user';
   return (
@@ -48,20 +83,20 @@ const ChatMessage = ({ message }) => {
     >
       {/* Avatar */}
       {!isUser && (
-        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+        <div className="w-7 h-7 rounded-full bg-primary-500 flex items-center justify-center flex-shrink-0" aria-hidden="true">
           <Sparkles className="w-3.5 h-3.5 text-white" />
         </div>
       )}
 
       {/* Bubble */}
       <div
-        className={`max-w-[80%] px-4 py-3 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${
+        className={`max-w-[85%] px-4 py-3 rounded-2xl text-xs sm:text-sm leading-relaxed space-y-1 ${
           isUser
-            ? 'bg-gradient-to-br from-primary-500 to-primary-700 text-white rounded-br-none'
-            : 'glass-light text-slate-200 rounded-bl-none'
+            ? 'bg-primary-500 text-white font-medium rounded-br-none'
+            : 'glass-card border border-white/10 text-slate-200 rounded-bl-none'
         }`}
       >
-        {message.content}
+        {formatMessageText(message.content)}
       </div>
     </motion.div>
   );
