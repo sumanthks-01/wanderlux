@@ -1,46 +1,23 @@
 // ============================================================
-// HeroSection.jsx — Fullscreen hero with ambient video bg,
-// Framer Motion text reveal, and smooth scroll CTA.
+// HeroSection.jsx — Asymmetric Split Editorial Layout
+// Modern framed video viewport + editorial typography + quick search
 // ============================================================
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, Compass, Sparkles, Globe, Cloud, Map } from 'lucide-react';
+import { Compass, Sparkles, Globe, Cloud, Map, ArrowUpRight, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-// Reliable looping ambient travel videos — tried in order
-// Mixkit embeds freely without CORS restrictions on modern browsers
 const VIDEO_SOURCES = [
-  // Aerial beach waves / ocean coast
   'https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4',
-  // Aerial coastline with city
   'https://assets.mixkit.co/videos/preview/mixkit-aerial-shot-of-waves-crashing-on-a-beach-1504-large.mp4',
-  // Mountain road aerial
   'https://assets.mixkit.co/videos/preview/mixkit-going-down-a-curved-road-through-a-mountain-range-41576-large.mp4',
-  // Pexels aerial mountains (fallback)
-  'https://videos.pexels.com/video-files/1851190/1851190-hd_1920_1080_25fps.mp4',
-  // Coverr tropical island (deepest fallback)
-  'https://cdn.coverr.co/videos/coverr-aerial-view-of-a-tropical-island-7358/1080p.mp4',
 ];
-// Dark solid poster — the gradient overlay renders cleanly while the video loads
-// instead of showing an unrelated beach stock photo
-const VIDEO_FALLBACK_POSTER = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080"><rect width="1920" height="1080" fill="%230c0a08"/></svg>';
-
-
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.18, delayChildren: 0.3 } },
-};
-
-const itemVariants = {
-  hidden:  { opacity: 0, y: 32, filter: 'blur(8px)' },
-  visible: { opacity: 1, y: 0,  filter: 'blur(0px)', transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] } },
-};
 
 const HERO_STATS = [
-  { value: '8+',   label: 'Destinations', icon: Globe  },
-  { value: 'AI',   label: 'Trip Planner', icon: Map    },
-  { value: 'Live', label: 'Weather',      icon: Cloud  },
+  { value: '8+',   label: 'Curated Destinations', icon: Globe },
+  { value: 'AI',   label: 'Itinerary Engine',    icon: Map },
+  { value: 'Live', label: 'Weather Radar',       icon: Cloud },
 ];
 
 const HeroSection = () => {
@@ -51,141 +28,143 @@ const HeroSection = () => {
 
   return (
     <section
-      className="relative min-h-dvh flex flex-col overflow-hidden pt-20"
+      className="relative min-h-[90vh] flex items-center pt-28 pb-16 overflow-hidden bg-dark-900"
       aria-label="Hero — Explore the World with WanderLux"
     >
-      {/* ---- Ambient Video Background ---- */}
-      <div className="absolute inset-0 z-0" aria-hidden="true">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={VIDEO_FALLBACK_POSTER}
-          className="w-full h-full object-cover scale-105"
-          aria-hidden="true"
-          preload="auto"
-        >
-          {VIDEO_SOURCES.map(src => (
-            <source key={src} src={src} type="video/mp4" />
-          ))}
-          <img src={VIDEO_FALLBACK_POSTER} alt="" className="w-full h-full object-cover" />
-        </video>
+      {/* Background Subtle Gradient Glow */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Multi-layer gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-900/50 via-dark-900/30 to-dark-900" />
-        <div className="absolute inset-0 bg-gradient-to-r from-dark-900/60 via-transparent to-dark-900/40" />
-        <div className="absolute inset-0 bg-dark-900/20" />
-      </div>
-
-      {/* ---- Animated particle dots (decorative) ---- */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 rounded-full bg-primary-400/40"
-            style={{
-              left: `${15 + i * 15}%`,
-              top:  `${20 + (i % 3) * 25}%`,
-            }}
-            animate={{ y: [0, -20, 0], opacity: [0.3, 0.8, 0.3] }}
-            transition={{ duration: 3 + i * 0.7, repeat: Infinity, delay: i * 0.4 }}
-          />
-        ))}
-      </div>
-
-      {/* ---- Main Content — grows to fill available height, centered ---- */}
-      <div className="relative z-10 section-container text-center flex-1 flex flex-col items-center justify-center pt-4 pb-4">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="max-w-4xl mx-auto w-full"
-        >
-          {/* Badge */}
-          <motion.div variants={itemVariants} className="inline-flex mb-6">
-            <span className="badge badge-primary text-xs px-3 py-1.5">
-              <Sparkles className="w-3 h-3" aria-hidden="true" />
-              AI-Powered Travel Planning
-            </span>
-          </motion.div>
-
-          {/* Headline */}
-          <motion.h1
-            variants={itemVariants}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-[1.05] tracking-tight"
-          >
-            <span className="font-display tracking-tight block">Discover</span>
-            <span className="block font-editorial italic font-normal text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-gradient my-1">Your Next</span>
-            <span className="font-display font-extrabold text-white/95 block tracking-tight">Adventure</span>
-          </motion.h1>
-
-          {/* Subheadline */}
-          <motion.p
-            variants={itemVariants}
-            className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
-          >
-            Explore breathtaking destinations around the world. Get AI-powered itineraries,
-            real-time weather, and curated travel experiences tailored just for you.
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
-          >
-            <button
-              onClick={scrollToExplorer}
-              className="btn btn-primary btn-lg shadow-glow"
-              aria-label="Start exploring destinations"
+      <div className="section-container w-full relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          {/* LEFT COLUMN: Editorial Typography & Actions */}
+          <div className="lg:col-span-7 space-y-8">
+            
+            {/* Top Badge */}
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2.5 badge badge-primary px-3.5 py-1.5"
             >
-              <Compass className="w-5 h-5" aria-hidden="true" />
-              Start Exploring
-            </button>
-            <Link
-              to="/itinerary"
-              className="btn btn-ghost btn-lg"
-              aria-label="Plan your trip with AI"
-            >
-              <Sparkles className="w-5 h-5" aria-hidden="true" />
-              Plan with AI
-            </Link>
-          </motion.div>
+              <Sparkles className="w-3.5 h-3.5 text-primary-500" aria-hidden="true" />
+              <span>Next-Gen AI Travel Concierge</span>
+            </motion.div>
 
-          {/* Stats — with dividers between items */}
-          <motion.div
-            variants={itemVariants}
-            className="flex items-center justify-center"
-          >
-            {HERO_STATS.map(({ value, label, icon: Icon }, i) => (
-              <React.Fragment key={label}>
-                {i > 0 && (
-                  <div className="w-px h-10 bg-white/15 mx-8 md:mx-14 flex-shrink-0" aria-hidden="true" />
-                )}
-                <div className="text-center">
-                  <div className="flex items-center justify-center gap-1.5 mb-0.5">
-                    <Icon className="w-4 h-4 text-primary-400" aria-hidden="true" />
-                    <span className="text-2xl md:text-3xl font-bold text-white font-display">{value}</span>
+            {/* Main Headline */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="space-y-2"
+            >
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.08] tracking-tight">
+                <span className="font-display block">Redefine How</span>
+                <span className="font-editorial italic font-normal text-primary-500 text-5xl sm:text-7xl lg:text-8xl block my-1">
+                  You Travel.
+                </span>
+              </h1>
+              <p className="text-slate-400 text-base sm:text-lg max-w-xl leading-relaxed pt-2">
+                Curated global destinations, instant AI-generated itineraries, and live local weather—crafted effortlessly for your next journey.
+              </p>
+            </motion.div>
+
+            {/* Action Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex flex-wrap gap-4 pt-2"
+            >
+              <button
+                onClick={scrollToExplorer}
+                className="btn btn-primary btn-lg group"
+                aria-label="Start exploring destinations"
+              >
+                <Compass className="w-5 h-5 group-hover:rotate-45 transition-transform" aria-hidden="true" />
+                Explore Destinations
+              </button>
+              <Link
+                to="/itinerary"
+                className="btn btn-ghost btn-lg group"
+                aria-label="Plan your trip with AI"
+              >
+                <span>Generate Itinerary</span>
+                <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
+              </Link>
+            </motion.div>
+
+            {/* Mini Stats Bar */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="pt-6 border-t border-white/10 grid grid-cols-3 gap-4"
+            >
+              {HERO_STATS.map(({ value, label, icon: Icon }) => (
+                <div key={label} className="space-y-1">
+                  <div className="flex items-center gap-1.5">
+                    <Icon className="w-4 h-4 text-primary-500" aria-hidden="true" />
+                    <span className="text-xl sm:text-2xl font-bold font-display text-white">{value}</span>
                   </div>
-                  <div className="text-xs text-slate-400 uppercase tracking-widest">{label}</div>
+                  <div className="text-xs text-slate-400 font-medium">{label}</div>
                 </div>
-              </React.Fragment>
-            ))}
-          </motion.div>
-        </motion.div>
-      </div>
+              ))}
+            </motion.div>
 
-      {/* ---- Scroll indicator — in-flow at section bottom, never overlaps stats ---- */}
-      <div className="relative z-10 flex justify-center pb-6 pt-2">
-        <motion.button
-          className="w-10 h-10 flex items-center justify-center rounded-full glass border border-white/15 text-slate-400 hover:text-white hover:bg-white/10 transition-all"
-          onClick={scrollToExplorer}
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          aria-label="Scroll down to explore destinations"
-        >
-          <ChevronDown className="w-5 h-5" aria-hidden="true" />
-        </motion.button>
+          </div>
+
+          {/* RIGHT COLUMN: Framed Interactive Video Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="lg:col-span-5 relative"
+          >
+            <div className="relative rounded-3xl overflow-hidden glass-card p-3 border border-white/15 shadow-2xl">
+              
+              {/* Aspect Ratio Video Container */}
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-dark-800">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover scale-105"
+                  aria-hidden="true"
+                >
+                  {VIDEO_SOURCES.map(src => (
+                    <source key={src} src={src} type="video/mp4" />
+                  ))}
+                </video>
+
+                {/* Ambient Overlay Gradients */}
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-black/30" />
+
+                {/* Floating Badge Top Right */}
+                <div className="absolute top-4 right-4 glass px-3 py-1.5 rounded-full flex items-center gap-2 text-xs font-semibold text-white">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                  <span>Live Experience</span>
+                </div>
+
+                {/* Bottom Overlay Card info */}
+                <div className="absolute bottom-6 left-6 right-6 p-5 glass-card rounded-2xl border border-white/15 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-primary-400 font-mono font-bold tracking-widest uppercase">Spotlight</span>
+                    <span className="text-xs text-slate-300">Coastal Haven</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-white font-display">Discover Tropical Horizons</h3>
+                  <p className="text-xs text-slate-300 line-clamp-2">
+                    Experience oceanfront retreats with personalized daily guides generated in seconds.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </motion.div>
+
+        </div>
       </div>
     </section>
   );

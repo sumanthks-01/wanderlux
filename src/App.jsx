@@ -70,14 +70,14 @@ const App = () => {
 
         <Footer />
 
-        {/* Floating AI Chat Button — properly wired trigger */}
+        {/* Floating AI Chat Button — Crimson Theme */}
         {!chatOpen && (
           <button
             onClick={() => setChatOpen(true)}
-            className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center shadow-glow animate-pulse-ring group"
+            className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary-500 flex items-center justify-center shadow-glow animate-pulse-ring group cursor-pointer"
             aria-label="Open AI travel assistant chat"
           >
-            <MessageCircle className="w-6 h-6 text-dark-900 group-hover:scale-110 transition-transform" aria-hidden="true" />
+            <MessageCircle className="w-6 h-6 text-white group-hover:scale-110 transition-transform" aria-hidden="true" />
           </button>
         )}
 
