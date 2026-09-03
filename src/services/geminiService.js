@@ -18,39 +18,98 @@ const hasApiKey = () => {
   return key !== '' && key !== 'your_gemini_api_key_here';
 };
 
-// Valid production Google Gemini REST models in priority order
+// Valid production Google Gemini models in priority order
 const PREFERRED_MODELS = [
   'gemini-1.5-flash',
   'gemini-2.0-flash',
+  'gemini-2.5-flash',
   'gemini-1.5-pro',
   'gemini-2.0-flash-lite',
 ];
 
-// Helper to call Gemini REST API
+/**
+ * Universal Gemini API Caller
+ * Tries Official SDK first, then REST API with multiple auth header formats
+ * (x-goog-api-key, Authorization Bearer, and URL query key).
+ */
 const callGeminiRestAPI = async (prompt) => {
   const key = getApiKey();
-  if (!key) throw new Error('No API key');
+  if (!key) throw new Error('No API key configured');
 
-  for (const model of PREFERRED_MODELS) {
-    try {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-        }),
-      });
-
-      if (res.ok) {
-        const data = await res.json();
-        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (text) return text;
+  // Strategy 1: Official @google/genai SDK
+  try {
+    const ai = new GoogleGenAI({ apiKey: key });
+    for (const modelName of ['gemini-2.5-flash', 'gemini-1.5-flash', 'gemini-2.0-flash']) {
+      try {
+        const response = await ai.models.generateContent({
+          model: modelName,
+          contents: prompt,
+        });
+        if (response && response.text) {
+          console.log(`[Gemini SDK] Success using model: ${modelName}`);
+          return response.text;
+        }
+      } catch (sdkErr) {
+        console.warn(`[Gemini SDK] Model ${modelName} failed:`, sdkErr.message);
       }
-    } catch {
-      // try next model
+    }
+  } catch (sdkInitErr) {
+    console.warn('[Gemini SDK] Init failed, falling back to REST:', sdkInitErr.message);
+  }
+
+  // Strategy 2: Direct REST API with flexible headers
+  for (const model of PREFERRED_MODELS) {
+    // Try URL key, x-goog-api-key header, and Bearer token headers
+    const attempts = [
+      {
+        url: `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(key)}`,
+        headers: { 'Content-Type': 'application/json' },
+      },
+      {
+        url: `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+        headers: {
+          'Content-Type': 'application/json',
+          'x-goog-api-key': key,
+        },
+      },
+      {
+        url: `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${key}`,
+          'x-goog-api-key': key,
+        },
+      },
+    ];
+
+    for (const attempt of attempts) {
+      try {
+        const res = await fetch(attempt.url, {
+          method: 'POST',
+          headers: attempt.headers,
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+          }),
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (text) {
+            console.log(`[Gemini REST] Success using model ${model}`);
+            return text;
+          }
+        } else {
+          const errBody = await res.text();
+          console.warn(`[Gemini REST] Model ${model} returned ${res.status}:`, errBody);
+        }
+      } catch (fetchErr) {
+        console.warn(`[Gemini REST] Fetch error for ${model}:`, fetchErr.message);
+      }
     }
   }
-  throw new Error('Gemini API call failed across all endpoints');
+
+  throw new Error('All Gemini API connection strategies failed');
 };
 
 // ===========================================================
