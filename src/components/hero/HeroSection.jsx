@@ -8,17 +8,24 @@ import { motion } from 'framer-motion';
 import { ChevronDown, Compass, Sparkles, Globe, Cloud, Map } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-// Multiple free travel video sources — tried in order until one loads
+// Reliable looping ambient travel videos — tried in order
+// Mixkit embeds freely without CORS restrictions on modern browsers
 const VIDEO_SOURCES = [
-  // Mixkit — free, no auth, great quality travel/aerial content
-  'https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-the-ocean-coast-with-a-city-in-the-4118-large.mp4',
+  // Aerial beach waves / ocean coast
+  'https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4',
+  // Aerial coastline with city
+  'https://assets.mixkit.co/videos/preview/mixkit-aerial-shot-of-waves-crashing-on-a-beach-1504-large.mp4',
+  // Mountain road aerial
   'https://assets.mixkit.co/videos/preview/mixkit-going-down-a-curved-road-through-a-mountain-range-41576-large.mp4',
-  // Pexels direct CDN fallback
+  // Pexels aerial mountains (fallback)
   'https://videos.pexels.com/video-files/1851190/1851190-hd_1920_1080_25fps.mp4',
-  // Coverr fallback
+  // Coverr tropical island (deepest fallback)
   'https://cdn.coverr.co/videos/coverr-aerial-view-of-a-tropical-island-7358/1080p.mp4',
 ];
-const VIDEO_FALLBACK_POSTER = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80';
+// Dark solid poster — the gradient overlay renders cleanly while the video loads
+// instead of showing an unrelated beach stock photo
+const VIDEO_FALLBACK_POSTER = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080"><rect width="1920" height="1080" fill="%230c0a08"/></svg>';
+
 
 const containerVariants = {
   hidden: {},
