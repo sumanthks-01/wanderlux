@@ -1,26 +1,43 @@
 // ============================================================
-// DestinationExplorer.jsx — Search, filter, and display
-// destinations with debounced input and animated grid.
+// DestinationExplorer.jsx — User Location-Aware Destination Explorer
+// Prioritizes destinations in the user's home country / region.
 // ============================================================
 
 import React, { useState, useMemo, useCallback, useId } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, SlidersHorizontal, MapPin, Map as MapIcon } from 'lucide-react';
+import { Search, X, SlidersHorizontal, MapPin, Map as MapIcon, Compass } from 'lucide-react';
 import { DESTINATIONS, CATEGORIES, filterDestinations } from '../../data/destinationsData';
 import DestinationCard from './DestinationCard';
 import { useDebounce } from '../../hooks/useDebounce';
+import { useWeatherLocation } from '../../context/WeatherLocationContext';
 
 const DestinationExplorer = () => {
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [filterMode, setFilterMode] = useState('local'); // 'local' | 'all'
   const searchId = useId();
+  const { locationName } = useWeatherLocation();
 
   const debouncedSearch = useDebounce(search, 320);
 
-  const filteredDestinations = useMemo(
-    () => filterDestinations(debouncedSearch, selectedCategory),
-    [debouncedSearch, selectedCategory]
-  );
+  // Infer user country from locationName (default: India)
+  const userCountry = useMemo(() => {
+    if (!locationName) return 'India';
+    const loc = locationName.toLowerCase();
+    if (loc.includes('usa') || loc.includes('york') || loc.includes('america')) return 'USA';
+    if (loc.includes('japan') || loc.includes('tokyo') || loc.includes('kyoto')) return 'Japan';
+    if (loc.includes('greece') || loc.includes('france') || loc.includes('europe')) return 'Europe';
+    return 'India';
+  }, [locationName]);
+
+  const filteredDestinations = useMemo(() => {
+    const list = filterDestinations(
+      debouncedSearch,
+      selectedCategory,
+      filterMode === 'local' ? userCountry : ''
+    );
+    return list;
+  }, [debouncedSearch, selectedCategory, filterMode, userCountry]);
 
   const clearSearch = useCallback(() => setSearch(''), []);
 
@@ -41,14 +58,38 @@ const DestinationExplorer = () => {
         >
           <div className="inline-flex items-center gap-2 badge badge-primary mb-4">
             <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
-            Destinations
+            <span>Destinations Near & Global</span>
           </div>
+
           <h2 id="explorer-heading" className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
-            Explore the World
+            Explore Places in {userCountry} & World
           </h2>
+
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            From ancient temples to pristine beaches — discover destinations that will redefine your sense of wonder.
+            Personalized for your region. Discover iconic monuments, tranquil hill stations, and tropical escapes.
           </p>
+
+          {/* Region Toggle Bar */}
+          <div className="mt-6 flex justify-center gap-2">
+            <button
+              onClick={() => setFilterMode('local')}
+              className={`btn btn-sm rounded-full ${
+                filterMode === 'local' ? 'btn-primary' : 'btn-ghost text-slate-300'
+              }`}
+            >
+              <MapPin className="w-3.5 h-3.5" />
+              <span>Trending in {userCountry}</span>
+            </button>
+            <button
+              onClick={() => setFilterMode('all')}
+              className={`btn btn-sm rounded-full ${
+                filterMode === 'all' ? 'btn-primary' : 'btn-ghost text-slate-300'
+              }`}
+            >
+              <Compass className="w-3.5 h-3.5" />
+              <span>All Global Destinations</span>
+            </button>
+          </div>
         </motion.div>
 
         {/* Search & Filter bar */}
@@ -70,7 +111,7 @@ const DestinationExplorer = () => {
               type="search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search destinations, countries..."
+              placeholder={`Search places in ${userCountry}, monuments, beaches...`}
               className="input-field pl-12 pr-10 text-base"
               aria-label="Search destinations"
               autoComplete="off"
@@ -112,12 +153,19 @@ const DestinationExplorer = () => {
         </motion.div>
 
         {/* Result count */}
-        <div className="text-slate-400 text-sm mb-6" aria-live="polite" aria-atomic="true">
-          {filteredDestinations.length === 0
-            ? 'No destinations found'
-            : `Showing ${filteredDestinations.length} destination${filteredDestinations.length !== 1 ? 's' : ''}`}
-          {debouncedSearch && ` for "${debouncedSearch}"`}
-          {selectedCategory !== 'All' && ` in ${selectedCategory}`}
+        <div className="text-slate-400 text-sm mb-6 flex items-center justify-between flex-wrap gap-2" aria-live="polite" aria-atomic="true">
+          <span>
+            {filteredDestinations.length === 0
+              ? 'No destinations found'
+              : `Showing ${filteredDestinations.length} destination${filteredDestinations.length !== 1 ? 's' : ''}`}
+            {debouncedSearch && ` for "${debouncedSearch}"`}
+            {selectedCategory !== 'All' && ` in ${selectedCategory}`}
+          </span>
+          {filterMode === 'local' && (
+            <span className="text-xs text-primary-400 font-medium">
+              📍 Prioritizing destinations in {userCountry}
+            </span>
+          )}
         </div>
 
         {/* Destination Grid */}
@@ -155,7 +203,7 @@ const DestinationExplorer = () => {
                 Try adjusting your search or filters to discover more places.
               </p>
               <button
-                onClick={() => { setSearch(''); setSelectedCategory('All'); }}
+                onClick={() => { setSearch(''); setSelectedCategory('All'); setFilterMode('all'); }}
                 className="btn btn-primary"
                 aria-label="Reset all search filters"
               >
