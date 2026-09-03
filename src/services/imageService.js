@@ -17,7 +17,7 @@ const FALLBACK_IMAGES = {
   // Destinations
   'agra-taj-mahal':  'https://images.unsplash.com/photo-1564507592333-c60657eea523?w=1200&q=80',
   'jaipur-rajasthan':'https://images.unsplash.com/photo-1599661046289-e31897846e41?w=1200&q=80',
-  'mysore-karnataka':'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mysore_Palace_Morning.jpg/1280px-Mysore_Palace_Morning.jpg',
+  'mysore-karnataka':'https://images.unsplash.com/photo-1600100397608-f010e423b971?w=1200&q=80',
   'goa-beaches':     'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1200&q=80',
   kyoto:             'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1200&q=80',
   santorini:         'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=1200&q=80',
@@ -31,7 +31,7 @@ const FALLBACK_IMAGES = {
   // Famous places fallbacks by id
   'taj-mahal':       'https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&q=80',
   'hawa-mahal':      'https://images.unsplash.com/photo-1599661046289-e31897846e41?w=800&q=80',
-  'mysore-palace-place':'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mysore_Palace_Morning.jpg/1280px-Mysore_Palace_Morning.jpg',
+  'mysore-palace-place':'https://images.unsplash.com/photo-1600100397608-f010e423b971?w=800&q=80',
   'palolem-beach':   'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80',
   'fushimi-inari':   'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80',
   'arashiyama':      'https://images.unsplash.com/photo-1527764324265-09aee2ab0e30?w=800&q=80',

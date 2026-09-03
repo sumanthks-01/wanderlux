@@ -19,8 +19,8 @@ const REGIONAL_PLACE_SETS = {
       distance: '140 km away • Mysuru',
       category: 'Royal Heritage',
       desc: 'Magnificent royal palace of the Wadiyar dynasty. Renowned for its grand Sunday evening illumination with 100,000 golden bulbs.',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mysore_Palace_Morning.jpg/1280px-Mysore_Palace_Morning.jpg',
-      fallbackImage: 'https://images.unsplash.com/photo-1600100397608-f010e423b971?auto=format&fit=crop&w=1200&q=80',
+      image: 'https://images.unsplash.com/photo-1600100397608-f010e423b971?auto=format&fit=crop&w=1200&q=80',
+      fallbackImage: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1200&q=80',
       targetDestination: 'Mysore, Karnataka',
     },
     {
@@ -29,8 +29,8 @@ const REGIONAL_PLACE_SETS = {
       distance: 'City Center • Bengaluru',
       category: 'Architectural Icon',
       desc: 'The majestic seat of Karnataka legislature. A Neo-Dravidian granite marvel showcasing intricate stone carvings and weekend lights.',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Vidhana_Soudha_Bangalore_2019.jpg/1280px-Vidhana_Soudha_Bangalore_2019.jpg',
-      fallbackImage: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1200&q=80',
+      image: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1200&q=80',
+      fallbackImage: 'https://images.unsplash.com/photo-1600100397608-f010e423b971?auto=format&fit=crop&w=1200&q=80',
       targetDestination: 'Bengaluru, Karnataka',
     },
     {
@@ -49,8 +49,8 @@ const REGIONAL_PLACE_SETS = {
       distance: '340 km away • Vijayanagara',
       category: 'UNESCO World Heritage',
       desc: 'Surreal boulder-strewn landscape featuring the historic Stone Chariot, Virupaksha temple, and ancient Vijayanagara empire ruins.',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Stone_Chariot_at_Vittala_Temple_Complex_Hampi.jpg/1280px-Stone_Chariot_at_Vittala_Temple_Complex_Hampi.jpg',
-      fallbackImage: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=80',
+      image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=80',
+      fallbackImage: 'https://images.unsplash.com/photo-1600100397608-f010e423b971?auto=format&fit=crop&w=1200&q=80',
       targetDestination: 'Hampi, Karnataka',
     },
     {
