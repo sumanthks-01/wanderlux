@@ -1,7 +1,7 @@
 /* ====================================================
-   WANDERLUX — High-Fashion Editorial Design System
+   WANDERLUX — High-Fashion Cyber Luxe Design System
    Fonts: Syne × Instrument Serif × Plus Jakarta Sans
-   Palette: Velvet Midnight Amethyst × Solar Saffron × Cyber Rose
+   Palette: Obsidian Ink × Electric Royal Violet × Acid Citron Lime
    ==================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Syne:wght@400..800&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -16,57 +16,57 @@
   --font-editorial: 'Instrument Serif', Georgia, serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Solar Saffron primary */
-  --color-primary-50:  #fff8ed;
-  --color-primary-100: #ffeed3;
-  --color-primary-200: #ffd7a6;
-  --color-primary-300: #ffba6d;
-  --color-primary-400: #ff9233;
-  --color-primary-500: #ff7005;
-  --color-primary-600: #e65300;
-  --color-primary-700: #b83b00;
-  --color-primary-800: #923007;
-  --color-primary-900: #762909;
+  /* Electric Royal Violet primary */
+  --color-primary-50:  #fbf5ff;
+  --color-primary-100: #f4e6ff;
+  --color-primary-200: #ebd0ff;
+  --color-primary-300: #dda6ff;
+  --color-primary-400: #c084fc;
+  --color-primary-500: #a855f7;
+  --color-primary-600: #9333ea;
+  --color-primary-700: #7e22ce;
+  --color-primary-800: #6b21a8;
+  --color-primary-900: #581c87;
 
-  /* Cyber Rose Magenta accent */
-  --color-accent-400: #ff5c9b;
-  --color-accent-500: #ff2a7a;
-  --color-accent-600: #e60057;
+  /* Acid Citron Lime accent */
+  --color-accent-300: #d4ff00;
+  --color-accent-400: #ccff00;
+  --color-accent-500: #b8e600;
 
-  /* Velvet Midnight Amethyst backgrounds */
-  --color-dark-900: #07040c;
-  --color-dark-800: #100a1b;
-  --color-dark-700: #1a112a;
-  --color-dark-600: #271b3d;
+  /* Obsidian Ink Violet backgrounds */
+  --color-dark-900: #08070d;
+  --color-dark-800: #110f1a;
+  --color-dark-700: #1a1827;
+  --color-dark-600: #262338;
 
-  --shadow-glow:        0 0 32px rgba(255, 112, 5, 0.45);
-  --shadow-glow-accent: 0 0 32px rgba(255, 42, 122, 0.45);
-  --shadow-card:        0 8px 40px rgba(0,0,0,0.6);
+  --shadow-glow:        0 0 32px rgba(168, 85, 247, 0.45);
+  --shadow-glow-accent: 0 0 32px rgba(212, 255, 0, 0.45);
+  --shadow-card:        0 8px 40px rgba(0,0,0,0.65);
   --shadow-glass:       0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
 }
 
 /* ===================== CSS Variables ===================== */
 :root {
-  /* Primary — Solar Saffron */
-  --color-primary:      #ff7005;
-  --color-primary-dark: #e65300;
+  /* Primary — Electric Royal Violet */
+  --color-primary:      #a855f7;
+  --color-primary-dark: #7e22ce;
 
-  /* Accent — Cyber Rose */
-  --color-accent:      #ff2a7a;
-  --color-accent-dark: #e60057;
+  /* Accent — Acid Citron Lime */
+  --color-accent:      #d4ff00;
+  --color-accent-dark: #91b800;
 
   /* Backgrounds */
-  --bg-dark:   #07040c;
-  --bg-dark-2: #100a1b;
-  --bg-dark-3: #1a112a;
+  --bg-dark:   #08070d;
+  --bg-dark-2: #110f1a;
+  --bg-dark-3: #1a1827;
 
-  /* Glassmorphism — Amethyst Tinted */
+  /* Glassmorphism — Violet & Citron Tinted */
   --glass-bg:     rgba(255, 255, 255, 0.04);
-  --glass-border: rgba(255, 140, 56, 0.15);
+  --glass-border: rgba(168, 85, 247, 0.18);
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.08);
 
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --text-muted: rgba(188, 178, 204, 1);
+  --text-muted: rgba(190, 182, 210, 1);
 
   --radius-card: 22px;
   --radius-btn:  14px;
@@ -93,7 +93,7 @@ body {
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  color: #f1ecf7;
+  color: #f3eefc;
   background-color: var(--bg-dark);
   overflow-x: hidden;
 }
@@ -109,14 +109,14 @@ body {
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg-dark-2); }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 112, 5, 0.3);
+  background: rgba(168, 85, 247, 0.35);
   border-radius: 3px;
 }
-::-webkit-scrollbar-thumb:hover { background: rgba(255, 112, 5, 0.55); }
+::-webkit-scrollbar-thumb:hover { background: rgba(168, 85, 247, 0.6); }
 
 /* ===================== Selection ===================== */
 ::selection {
-  background: rgba(255, 112, 5, 0.4);
+  background: rgba(168, 85, 247, 0.4);
   color: #fff;
 }
 
@@ -124,23 +124,23 @@ body {
 .font-display { font-family: 'Syne', sans-serif; }
 .font-editorial { font-family: 'Instrument Serif', Georgia, serif; }
 
-/* Avant-Garde Gradient Text: Solar Saffron → Neon Coral → Cyber Rose */
+/* Cyber Gradient Text: Royal Violet → Acid Citron → Soft Lavender */
 .text-gradient {
-  background: linear-gradient(135deg, #ffba6d 0%, #ff7005 45%, #ff2a7a 100%);
+  background: linear-gradient(135deg, #e9d5ff 0%, #c084fc 40%, #d4ff00 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-warm {
-  background: linear-gradient(135deg, #ffd7a6 0%, #ff9233 50%, #ff2a7a 100%);
+  background: linear-gradient(135deg, #c084fc 0%, #a855f7 50%, #d4ff00 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-cool {
-  background: linear-gradient(135deg, #ff9233 0%, #ff2a7a 100%);
+  background: linear-gradient(135deg, #a855f7 0%, #d4ff00 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -156,27 +156,27 @@ body {
 }
 
 .glass-card {
-  background: rgba(16, 10, 27, 0.78);
+  background: rgba(17, 15, 26, 0.78);
   backdrop-filter: blur(28px) saturate(190%);
   -webkit-backdrop-filter: blur(28px) saturate(190%);
-  border: 1px solid rgba(255, 112, 5, 0.14);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.08);
+  border: 1px solid rgba(168, 85, 247, 0.16);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
 .glass-light {
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 112, 5, 0.2);
+  border: 1px solid rgba(168, 85, 247, 0.22);
 }
 
 /* ===================== Shimmer Skeleton ===================== */
 .shimmer {
   background: linear-gradient(
     90deg,
-    rgba(255, 112, 5, 0.03) 0%,
-    rgba(255, 112, 5, 0.1) 50%,
-    rgba(255, 112, 5, 0.03) 100%
+    rgba(168, 85, 247, 0.04) 0%,
+    rgba(168, 85, 247, 0.12) 50%,
+    rgba(168, 85, 247, 0.04) 100%
   );
   background-size: 200% 100%;
   animation: shimmer 1.6s infinite linear;
@@ -186,27 +186,27 @@ body {
 .bg-hero-gradient {
   background: linear-gradient(
     to bottom,
-    rgba(7, 4, 12, 0.0) 0%,
-    rgba(7, 4, 12, 0.35) 40%,
-    rgba(7, 4, 12, 0.9) 80%,
-    rgba(7, 4, 12, 1.0) 100%
+    rgba(8, 7, 13, 0.0) 0%,
+    rgba(8, 7, 13, 0.35) 40%,
+    rgba(8, 7, 13, 0.9) 80%,
+    rgba(8, 7, 13, 1.0) 100%
   );
 }
 
 .bg-section-gradient {
   background: linear-gradient(
     180deg,
-    #07040c 0%,
-    #130a21 50%,
-    #07040c 100%
+    #08070d 0%,
+    #131021 50%,
+    #08070d 100%
   );
 }
 
 .bg-card-gradient {
   background: linear-gradient(
     135deg,
-    rgba(255, 112, 5, 0.07) 0%,
-    rgba(255, 42, 122, 0.05) 100%
+    rgba(168, 85, 247, 0.08) 0%,
+    rgba(212, 255, 0, 0.05) 100%
   );
 }
 
@@ -235,40 +235,41 @@ body {
   cursor: not-allowed;
 }
 
-/* Solar Saffron Primary Button */
+/* Electric Royal Violet Primary Button */
 .btn-primary {
-  background: linear-gradient(135deg, #ff9233, #ff7005, #e65300);
+  background: linear-gradient(135deg, #c084fc, #a855f7, #7e22ce);
   background-size: 200% 100%;
   color: #fff;
-  box-shadow: 0 4px 24px rgba(255, 112, 5, 0.4);
+  box-shadow: 0 4px 24px rgba(168, 85, 247, 0.45);
 }
 .btn-primary:hover:not(:disabled) {
   background-position: right center;
   transform: translateY(-2px);
-  box-shadow: 0 8px 36px rgba(255, 112, 5, 0.6);
+  box-shadow: 0 8px 36px rgba(168, 85, 247, 0.65);
 }
 .btn-primary:active:not(:disabled) { transform: translateY(0); }
 
-/* Cyber Rose Accent Button */
+/* Acid Citron Lime Accent Button */
 .btn-accent {
-  background: linear-gradient(135deg, #ff5c9b, #ff2a7a, #e60057);
-  color: #fff;
-  box-shadow: 0 4px 24px rgba(255, 42, 122, 0.4);
+  background: linear-gradient(135deg, #d4ff00, #b8e600, #91b800);
+  color: #08070d;
+  font-weight: 800;
+  box-shadow: 0 4px 24px rgba(212, 255, 0, 0.4);
 }
 .btn-accent:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 36px rgba(255, 42, 122, 0.6);
+  box-shadow: 0 8px 36px rgba(212, 255, 0, 0.6);
 }
 
 /* Glass Ghost Button */
 .btn-ghost {
   background: rgba(255, 255, 255, 0.05);
-  color: #f1ecf7;
-  border: 1px solid rgba(255, 112, 5, 0.25);
+  color: #f3eefc;
+  border: 1px solid rgba(168, 85, 247, 0.28);
 }
 .btn-ghost:hover:not(:disabled) {
-  background: rgba(255, 112, 5, 0.12);
-  border-color: rgba(255, 112, 5, 0.45);
+  background: rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.5);
   transform: translateY(-1px);
 }
 
@@ -283,7 +284,7 @@ body {
 }
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
 }
 
 /* ===================== Badge System ===================== */
@@ -300,36 +301,36 @@ body {
 }
 
 .badge-primary {
-  background: rgba(255, 112, 5, 0.18);
-  color: #ffba6d;
-  border: 1px solid rgba(255, 112, 5, 0.35);
+  background: rgba(168, 85, 247, 0.18);
+  color: #e9d5ff;
+  border: 1px solid rgba(168, 85, 247, 0.38);
 }
 
 .badge-accent {
-  background: rgba(255, 42, 122, 0.18);
-  color: #ff9bc2;
-  border: 1px solid rgba(255, 42, 122, 0.35);
+  background: rgba(212, 255, 0, 0.18);
+  color: #d4ff00;
+  border: 1px solid rgba(212, 255, 0, 0.35);
 }
 
 .badge-success {
-  background: rgba(0, 229, 163, 0.15);
-  color: #00e5a3;
-  border: 1px solid rgba(0, 229, 163, 0.3);
+  background: rgba(212, 255, 0, 0.15);
+  color: #d4ff00;
+  border: 1px solid rgba(212, 255, 0, 0.3);
 }
 
 .badge-error {
-  background: rgba(255, 42, 122, 0.18);
-  color: #ff5c9b;
-  border: 1px solid rgba(255, 42, 122, 0.35);
+  background: rgba(244, 114, 182, 0.18);
+  color: #f472b6;
+  border: 1px solid rgba(244, 114, 182, 0.35);
 }
 
 /* ===================== Input System ===================== */
 .input-field {
   width: 100%;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 112, 5, 0.2);
+  border: 1px solid rgba(168, 85, 247, 0.22);
   border-radius: 14px;
-  color: #f1ecf7;
+  color: #f3eefc;
   font-size: 0.9375rem;
   padding: 0.75rem 1rem;
   transition: all var(--transition-fast);
@@ -337,12 +338,12 @@ body {
   min-height: 50px;
 }
 
-.input-field::placeholder { color: rgba(188, 178, 204, 0.55); }
+.input-field::placeholder { color: rgba(190, 182, 210, 0.55); }
 
 .input-field:focus {
   border-color: var(--color-primary);
-  background: rgba(255, 112, 5, 0.08);
-  box-shadow: 0 0 0 3px rgba(255, 112, 5, 0.2);
+  background: rgba(168, 85, 247, 0.09);
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.22);
 }
 
 /* ===================== Animations ===================== */
@@ -377,9 +378,9 @@ body {
 }
 
 @keyframes pulse-ring {
-  0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 112, 5, 0.5); }
-  70%  { transform: scale(1);    box-shadow: 0 0 0 12px rgba(255, 112, 5, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 112, 5, 0); }
+  0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.5); }
+  70%  { transform: scale(1);    box-shadow: 0 0 0 12px rgba(168, 85, 247, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
 }
 
 .animate-fadeInUp    { animation: fadeInUp 0.6s ease-out both; }
@@ -421,8 +422,8 @@ body {
 @media (min-width: 1024px) { .section-container { padding: 0 3rem; } }
 
 /* ===================== Glow Effects ===================== */
-.glow-primary { box-shadow: 0 0 30px rgba(255, 112, 5, 0.3); }
-.glow-accent  { box-shadow: 0 0 30px rgba(255, 42, 122, 0.3); }
+.glow-primary { box-shadow: 0 0 32px rgba(168, 85, 247, 0.35); }
+.glow-accent  { box-shadow: 0 0 32px rgba(212, 255, 0, 0.35); }
 
 /* ===================== Divider ===================== */
 .divider {
@@ -430,8 +431,8 @@ body {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 112, 5, 0.2) 30%,
-    rgba(255, 112, 5, 0.2) 70%,
+    rgba(168, 85, 247, 0.22) 30%,
+    rgba(168, 85, 247, 0.22) 70%,
     transparent 100%
   );
 }

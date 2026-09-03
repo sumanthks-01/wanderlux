@@ -7,40 +7,40 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Primary Brand — Solar Copper & Electric Saffron
+        // Primary Brand — Electric Royal Violet / Radiant Purple
         primary: {
-          50:  '#fff8ed',
-          100: '#ffeed3',
-          200: '#ffd7a6',
-          300: '#ffba6d',
-          400: '#ff9233',  // Core glowing accent
-          500: '#ff7005',  // Main brand
-          600: '#e65300',
-          700: '#b83b00',
-          800: '#923007',
-          900: '#762909',
-          950: '#401102',
+          50:  '#fbf5ff',
+          100: '#f4e6ff',
+          200: '#ebd0ff',
+          300: '#dda6ff',
+          400: '#c084fc',  // Core highlight
+          500: '#a855f7',  // Main brand violet
+          600: '#9333ea',  // Deep brand accent
+          700: '#7e22ce',
+          800: '#6b21a8',
+          900: '#581c87',
+          950: '#3b0764',
         },
-        // Accent — Cyber Rose Magenta / Sunset Flame
+        // Accent — Acid Citron Lime / Electric Champagne
         accent: {
-          50:  '#fff0f5',
-          100: '#ffe3ee',
-          200: '#ffc7de',
-          300: '#ff9bc2',
-          400: '#ff5c9b',  // Main accent
-          500: '#ff2a7a',  // Core highlight
-          600: '#e60057',
-          700: '#b80041',
-          800: '#960338',
-          900: '#7d0832',
+          50:  '#fafff0',
+          100: '#f3ffe0',
+          200: '#e4ffb8',
+          300: '#d4ff00',  // Vivid neon citron
+          400: '#ccff00',  // Main accent
+          500: '#b8e600',  // Core accent highlight
+          600: '#91b800',
+          700: '#6f8c00',
+          800: '#586e04',
+          900: '#485c07',
         },
-        // Backgrounds — Deep Velvet Midnight Amethyst
+        // Backgrounds — Obsidian Ink & Midnight Violet Layering
         dark: {
-          900: '#07040c',  // Ultra dark velvet
-          800: '#100a1b',  // Elevated card background
-          700: '#1a112a',  // Surface layer
-          600: '#271b3d',  // Hover layer
-          500: '#3c2b5c',  // Muted borders
+          900: '#08070d',  // Deepest obsidian violet
+          800: '#110f1a',  // Card background layer
+          700: '#1a1827',  // Surface layer
+          600: '#262338',  // Hover layer
+          500: '#3c3757',  // Subtle borders
         },
       },
       fontFamily: {
@@ -75,10 +75,10 @@ export default {
       },
       backdropBlur: { xs: '2px' },
       boxShadow: {
-        'glow':       '0 0 30px rgba(255, 112, 5, 0.4)',
-        'glow-accent':'0 0 30px rgba(255, 42, 122, 0.4)',
-        'card':       '0 8px 40px rgba(0,0,0,0.6)',
-        'card-hover': '0 12px 60px rgba(0,0,0,0.8)',
+        'glow':       '0 0 32px rgba(168, 85, 247, 0.45)',
+        'glow-accent':'0 0 32px rgba(212, 255, 0, 0.45)',
+        'card':       '0 8px 40px rgba(0,0,0,0.65)',
+        'card-hover': '0 12px 60px rgba(0,0,0,0.85)',
         'glass':      '0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)',
       },
       animation: {
