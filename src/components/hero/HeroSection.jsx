@@ -51,7 +51,7 @@ const HeroSection = () => {
 
   return (
     <section
-      className="relative min-h-dvh flex flex-col items-center justify-center overflow-hidden pt-20"
+      className="relative min-h-dvh flex flex-col overflow-hidden pt-20"
       aria-label="Hero — Explore the World with WanderLux"
     >
       {/* ---- Ambient Video Background ---- */}
@@ -94,13 +94,13 @@ const HeroSection = () => {
         ))}
       </div>
 
-      {/* ---- Main Content ---- */}
-      <div className="relative z-10 section-container text-center pt-8 pb-24">
+      {/* ---- Main Content — grows to fill available height, centered ---- */}
+      <div className="relative z-10 section-container text-center flex-1 flex flex-col items-center justify-center pt-4 pb-4">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="max-w-4xl mx-auto"
+          className="max-w-4xl mx-auto w-full"
         >
           {/* Badge */}
           <motion.div variants={itemVariants} className="inline-flex mb-6">
@@ -113,11 +113,11 @@ const HeroSection = () => {
           {/* Headline */}
           <motion.h1
             variants={itemVariants}
-            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-[1.05] tracking-tight"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-[1.05] tracking-tight"
           >
-            Discover
-            <span className="block text-gradient"> Your Next</span>
-            <span className="block text-white/90">Adventure</span>
+            <span className="font-display tracking-tight block">Discover</span>
+            <span className="block font-editorial italic font-normal text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-gradient my-1">Your Next</span>
+            <span className="font-display font-extrabold text-white/95 block tracking-tight">Adventure</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -175,16 +175,18 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* ---- Scroll indicator — just the arrow, no text to avoid overlap ---- */}
-      <motion.button
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 w-10 h-10 flex items-center justify-center rounded-full glass border border-white/15 text-slate-400 hover:text-white hover:bg-white/10 transition-all"
-        onClick={scrollToExplorer}
-        animate={{ y: [0, 6, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        aria-label="Scroll down to explore destinations"
-      >
-        <ChevronDown className="w-5 h-5" aria-hidden="true" />
-      </motion.button>
+      {/* ---- Scroll indicator — in-flow at section bottom, never overlaps stats ---- */}
+      <div className="relative z-10 flex justify-center pb-6 pt-2">
+        <motion.button
+          className="w-10 h-10 flex items-center justify-center rounded-full glass border border-white/15 text-slate-400 hover:text-white hover:bg-white/10 transition-all"
+          onClick={scrollToExplorer}
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          aria-label="Scroll down to explore destinations"
+        >
+          <ChevronDown className="w-5 h-5" aria-hidden="true" />
+        </motion.button>
+      </div>
     </section>
   );
 };

@@ -72,7 +72,7 @@ const ChatAssistantDrawer = ({ isOpen, onClose }) => {
     {
       id: 'welcome',
       role: 'model',
-      content: "✈️ Hello! I'm WanderLux AI — your personal travel concierge. Ask me anything about destinations, packing lists, local culture, budgets, or let me help plan your perfect trip!",
+      content: "Hello! I'm WanderLux AI — your personal travel concierge. Ask me anything about destinations, packing lists, local culture, budgets, or let me help plan your perfect trip!",
     },
   ]);
   const [input, setInput] = useState('');
@@ -127,31 +127,13 @@ const ChatAssistantDrawer = ({ isOpen, onClose }) => {
     setMessages([{
       id: 'welcome',
       role: 'model',
-      content: "✈️ Conversation reset! I'm WanderLux AI — your personal travel concierge. What adventure can I help you plan?",
+      content: "Conversation reset! I'm WanderLux AI — your personal travel concierge. What adventure can I help you plan?",
     }]);
     setInput('');
   };
 
   return (
     <>
-      {/* Floating trigger button */}
-      <AnimatePresence>
-        {!isOpen && (
-          <motion.button
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            onClick={onClose === undefined ? undefined : () => {}}
-            className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center shadow-glow cursor-pointer animate-pulse-ring"
-            aria-label="Open AI travel assistant"
-            style={{ display: isOpen ? 'none' : 'flex' }}
-          >
-            <MessageCircle className="w-6 h-6 text-white" aria-hidden="true" />
-          </motion.button>
-        )}
-      </AnimatePresence>
-
       {/* Backdrop */}
       <AnimatePresence>
         {isOpen && (

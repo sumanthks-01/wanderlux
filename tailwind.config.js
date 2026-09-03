@@ -7,46 +7,47 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Primary Brand — Deep Saffron / Amber-Gold
+        // Primary Brand — Solar Copper & Electric Saffron
         primary: {
-          50:  '#fff9eb',
-          100: '#fef0c7',
-          200: '#fdde89',
-          300: '#fcc84b',
-          400: '#fab822',  // main interactive
-          500: '#f59e00',  // core brand
-          600: '#c97c00',
-          700: '#a05c00',
-          800: '#834700',
-          900: '#6b3a00',
-          950: '#3e2000',
+          50:  '#fff8ed',
+          100: '#ffeed3',
+          200: '#ffd7a6',
+          300: '#ffba6d',
+          400: '#ff9233',  // Core glowing accent
+          500: '#ff7005',  // Main brand
+          600: '#e65300',
+          700: '#b83b00',
+          800: '#923007',
+          900: '#762909',
+          950: '#401102',
         },
-        // Accent — Rose Crimson / Sunset Red
+        // Accent — Cyber Rose Magenta / Sunset Flame
         accent: {
-          50:  '#fff1f2',
-          100: '#ffe0e2',
-          200: '#ffc6ca',
-          300: '#ff9ba2',
-          400: '#ff6272',  // main accent
-          500: '#f83a4e',  // core accent
-          600: '#d91d34',
-          700: '#b51630',
-          800: '#97162e',
-          900: '#7f172d',
+          50:  '#fff0f5',
+          100: '#ffe3ee',
+          200: '#ffc7de',
+          300: '#ff9bc2',
+          400: '#ff5c9b',  // Main accent
+          500: '#ff2a7a',  // Core highlight
+          600: '#e60057',
+          700: '#b80041',
+          800: '#960338',
+          900: '#7d0832',
         },
-        // Warm Obsidian backgrounds
+        // Backgrounds — Deep Velvet Midnight Amethyst
         dark: {
-          900: '#0c0a08',  // near-black warm
-          800: '#141210',  // deep warm dark
-          700: '#1f1c19',  // card surface
-          600: '#2e2a26',  // elevated
-          500: '#443f3a',  // muted
+          900: '#07040c',  // Ultra dark velvet
+          800: '#100a1b',  // Elevated card background
+          700: '#1a112a',  // Surface layer
+          600: '#271b3d',  // Hover layer
+          500: '#3c2b5c',  // Muted borders
         },
       },
       fontFamily: {
-        sans:    ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Playfair Display', 'Georgia', 'serif'],
-        mono:    ['JetBrains Mono', 'monospace'],
+        sans:      ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        display:   ['Syne', 'sans-serif'],
+        editorial: ['Instrument Serif', 'Georgia', 'serif'],
+        mono:      ['JetBrains Mono', 'monospace'],
       },
       fontSize: {
         '2xs': ['0.625rem', { lineHeight: '1rem' }],
@@ -74,11 +75,11 @@ export default {
       },
       backdropBlur: { xs: '2px' },
       boxShadow: {
-        'glow':       '0 0 24px rgba(245, 158, 0, 0.35)',
-        'glow-rose':  '0 0 24px rgba(248, 58, 78, 0.35)',
-        'card':       '0 4px 40px rgba(0,0,0,0.5)',
-        'card-hover': '0 8px 60px rgba(0,0,0,0.7)',
-        'glass':      '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)',
+        'glow':       '0 0 30px rgba(255, 112, 5, 0.4)',
+        'glow-accent':'0 0 30px rgba(255, 42, 122, 0.4)',
+        'card':       '0 8px 40px rgba(0,0,0,0.6)',
+        'card-hover': '0 12px 60px rgba(0,0,0,0.8)',
+        'glass':      '0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)',
       },
       animation: {
         'shimmer':       'shimmer 1.5s infinite linear',
