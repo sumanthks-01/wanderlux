@@ -45,7 +45,7 @@
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/wanderlux.git
+git clone https://github.com/sumanthks-01/wanderlux.git
 cd wanderlux
 
 # 2. Install dependencies
