@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MapPin, Star, Clock, ArrowRight, DollarSign } from 'lucide-react';
-import { fetchDestinationImage } from '../../services/imageService';
+import { fetchDestinationImage, getStaticImage } from '../../services/imageService';
 
 const DestinationCard = ({ destination, index = 0 }) => {
   const { id, name, country, tagline, category, heroQuery, rating, avgCostPerDay } = destination;
@@ -26,6 +26,8 @@ const DestinationCard = ({ destination, index = 0 }) => {
     load();
     return () => { cancelled = true; };
   }, [id, heroQuery]);
+
+  const imageUrl = imgData?.url || destination.image || getStaticImage(id).url;
 
   return (
     <motion.article
@@ -46,18 +48,23 @@ const DestinationCard = ({ destination, index = 0 }) => {
             <div className="absolute inset-0 shimmer" aria-hidden="true" />
           )}
 
-          {imgData && (
-            <img
-              src={imgData.url}
-              alt={imgData.alt || `${name} - ${country}`}
-              className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${
-                imgLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
-              onLoad={() => setImgLoaded(true)}
-              onError={() => { setImgError(true); setImgLoaded(true); }}
-              loading="lazy"
-            />
-          )}
+          <img
+            src={imageUrl}
+            alt={`${name} - ${country}`}
+            className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${
+              imgLoaded || imageUrl ? 'opacity-100' : 'opacity-0'
+            }`}
+            onLoad={() => setImgLoaded(true)}
+            onError={(e) => {
+              setImgError(true);
+              setImgLoaded(true);
+              const fallback = getStaticImage(id).url;
+              if (e.target.src !== fallback) {
+                e.target.src = fallback;
+              }
+            }}
+            loading="lazy"
+          />
 
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent" aria-hidden="true" />
